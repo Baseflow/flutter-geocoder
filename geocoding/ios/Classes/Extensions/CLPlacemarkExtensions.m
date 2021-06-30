@@ -13,17 +13,19 @@
 
 - (NSDictionary *)toPlacemarkDictionary {
     NSString* street = @"";
+    NSString* postalAddress = @"";
 
     if (@available(iOS 11.0, *)) {
         if (self.postalAddress != nil) {
             street = self.postalAddress.street;
+            CNPostalAddressFormatter *formatter = [[CNPostalAddressFormatter alloc]init];
+            postalAddress = [formatter stringFromPostalAddress:self.postalAddress];
         }
     } else if (@available(iOS 5.0, *)) {
         if (self.addressDictionary != nil) {
             street = [[self addressDictionary] objectForKey:(NSString *)kABPersonAddressStreetKey];
         }
     }
-    
     NSMutableDictionary<NSString *, NSObject *> *dict = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"name": self.name == nil ? @"" : self.name,
         @"street": street == nil ? @"" : street,
@@ -36,6 +38,7 @@
         @"subAdministrativeArea": self.subAdministrativeArea == nil ? @"" : self.subAdministrativeArea,
         @"locality": self.locality == nil ? @"" : self.locality,
         @"subLocality": self.subLocality == nil ? @"" : self.subLocality,
+        @"formattedAddress": postalAddress,
     }];
     
     return dict;
