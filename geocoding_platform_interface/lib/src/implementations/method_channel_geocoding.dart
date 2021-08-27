@@ -58,6 +58,25 @@ class MethodChannelGeocoding extends GeocodingPlatform {
     return Placemark.fromMaps(placemarks);
   }
 
+  @override
+  Future<List<Placemark>> placemarkFromAddress(
+    String address, {
+    String? localeIdentifier,
+  }) async {
+    final parameters = <String, String>{
+      'address': address,
+    };
+
+    if (localeIdentifier != null) {
+      parameters['localeIdentifier'] = localeIdentifier;
+    }
+
+    final placemarks = await methodChannel.invokeMethod(
+        'placemarkFromAddress', parameters);
+    return Placemark.fromMaps(placemarks);
+  }
+
+
   void _handlePlatformException(PlatformException platformException) {
     switch (platformException.code) {
       case 'NOT_FOUND':

@@ -1,3 +1,4 @@
+import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 import 'package:meta/meta.dart';
 
 /// Contains detailed placemark information.
@@ -18,6 +19,8 @@ class Placemark {
     this.subLocality,
     this.thoroughfare,
     this.subThoroughfare,
+    this.formattedAddress,
+    this.location
   });
 
   Placemark._({
@@ -32,6 +35,8 @@ class Placemark {
     this.subLocality,
     this.thoroughfare,
     this.subThoroughfare,
+    this.formattedAddress,
+    this.location
   });
 
   /// The name associated with the placemark.
@@ -67,6 +72,12 @@ class Placemark {
   /// Additional street address information for the placemark.
   final String? subThoroughfare;
 
+  /// The formated address
+  final String? formattedAddress;
+
+  /// The location of this placemark
+  final Location? location;
+
   @override
   bool operator ==(dynamic o) =>
       o is Placemark &&
@@ -80,7 +91,9 @@ class Placemark {
       o.subAdministrativeArea == subAdministrativeArea &&
       o.subLocality == subLocality &&
       o.subThoroughfare == subThoroughfare &&
-      o.thoroughfare == thoroughfare;
+      o.thoroughfare == thoroughfare &&
+      o.formattedAddress == formattedAddress &&
+      o.location == location;
 
   @override
   int get hashCode =>
@@ -94,7 +107,9 @@ class Placemark {
       subAdministrativeArea.hashCode ^
       subLocality.hashCode ^
       subThoroughfare.hashCode ^
-      thoroughfare.hashCode;
+      thoroughfare.hashCode ^
+      formattedAddress.hashCode ^
+      location.hashCode;
 
   /// Converts a list of [Map] instances to a list of [Placemark] instances.
   static List<Placemark> fromMaps(dynamic message) {
@@ -126,6 +141,10 @@ class Placemark {
       subLocality: placemarkMap['subLocality'] ?? '',
       thoroughfare: placemarkMap['thoroughfare'] ?? '',
       subThoroughfare: placemarkMap['subThoroughfare'] ?? '',
+      formattedAddress: placemarkMap['formattedAddress'] ?? '',
+      location: (placemarkMap['location']!=null)
+        ? Location.fromMap(placemarkMap['location'])
+        : null,
     );
   }
 
@@ -143,6 +162,8 @@ class Placemark {
         'subLocality': subLocality,
         'thoroughfare': thoroughfare,
         'subThoroughfare': subThoroughfare,
+        'formattedAddress': formattedAddress,
+        'location': location?.toJson()
       };
 
   @override
@@ -158,6 +179,32 @@ class Placemark {
       Locality: $locality,
       Sublocality: $subLocality,
       Thoroughfare: $thoroughfare,
-      Subthoroughfare: $subThoroughfare''';
+      Subthoroughfare: $subThoroughfare,
+      FormattedAddress: $formattedAddress,
+      location: $location,
+    ''';
   }
+
+  /// allows automatic deserialization with the json_serializable lib
+  factory Placemark.fromJson(Map<String, dynamic> json) => fromMap(json);
+
+  /// create a copy of the Placemark
+  Placemark copy() {
+    return Placemark(
+      name: name,
+      street: street,
+      isoCountryCode: isoCountryCode,
+      country: country,
+      postalCode: postalCode,
+      administrativeArea: administrativeArea,
+      subAdministrativeArea: subAdministrativeArea,
+      locality: locality,
+      subLocality: subLocality,
+      thoroughfare: thoroughfare,
+      subThoroughfare: subThoroughfare,
+      formattedAddress: formattedAddress,
+      location: location?.copy()
+    );
+  }
+
 }

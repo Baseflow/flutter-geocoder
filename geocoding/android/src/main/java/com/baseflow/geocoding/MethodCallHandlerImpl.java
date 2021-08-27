@@ -39,6 +39,9 @@ final class MethodCallHandlerImpl implements MethodCallHandler {
             case "placemarkFromCoordinates":
                 onPlacemarkFromCoordinates(call, result);
                 break;
+            case "placemarkFromAddress":
+                onplacemarkFromAddress(call, result);
+                break;
             default:
                 result.notImplemented();
                 break;
@@ -139,4 +142,40 @@ final class MethodCallHandlerImpl implements MethodCallHandler {
             );
         }
     }
+
+
+    private void onplacemarkFromAddress(MethodCall call, Result result) {
+        final String address = call.argument("address");
+        final String languageTag = call.argument("localeIdentifier");
+
+        if (address == null || address.isEmpty()) {
+            result.error(
+                    "ARGUMENT_ERROR",
+                    "Supply a valid value for the 'address' parameter.",
+                    null);
+        }
+
+        try {
+            final List<Address> addresses = geocoding.placemarkFromAddress(
+                    address,
+                    LocaleConverter.fromLanguageTag(languageTag));
+
+            if (addresses == null || addresses.isEmpty()) {
+                result.error(
+                        "NOT_FOUND",
+                        String.format("No address found for '%s'", address),
+                        null);
+                return;
+            }
+
+            result.success(AddressMapper.toAddressHashMapList(addresses));
+        } catch (IOException ex) {
+            result.error(
+                    "IO_ERROR",
+                    String.format("A network error occurred trying to lookup the address ''.", address),
+                    null
+            );
+        }
+    }
+
 }

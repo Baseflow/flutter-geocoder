@@ -50,7 +50,21 @@
                                        message:errorDescription
                                        details:nil]);
         }];
-    }else {
+    } else if ([@"placemarkFromAddress" isEqualToString:call.method]) {
+         NSString* address = call.arguments[@"address"];
+        
+        GeocodingHandler* handler = [[GeocodingHandler alloc] init];
+        [handler geocodeFromAddress:address
+                             locale:[GeocodingPlugin parseLocale: call.arguments]
+                            success:^(NSArray<CLPlacemark *> * placemarks) {
+            result([GeocodingPlugin toPlacemarkResult: placemarks]);
+        }
+                            failure:^(NSString * _Nonnull errorCode, NSString * _Nonnull errorDescription) {
+            result([FlutterError errorWithCode:errorCode
+                                       message:errorDescription
+                                       details:nil]);
+        }];
+    } else {
         result(FlutterMethodNotImplemented);
     }
 }

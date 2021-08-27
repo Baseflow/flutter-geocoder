@@ -9,13 +9,13 @@ class Location {
   Location({
     required this.latitude,
     required this.longitude,
-    required this.timestamp,
+    this.timestamp,
   });
 
   Location._({
     required this.latitude,
     required this.longitude,
-    required this.timestamp,
+    this.timestamp,
   });
 
   /// The latitude associated with the placemark.
@@ -25,7 +25,7 @@ class Location {
   final double longitude;
 
   /// The UTC timestamp the coordinates have been requested.
-  final DateTime timestamp;
+  DateTime? timestamp;
 
   @override
   bool operator ==(dynamic o) =>
@@ -55,9 +55,11 @@ class Location {
     }
 
     final Map<dynamic, dynamic> locationMap = message;
-    final timestamp = DateTime.fromMillisecondsSinceEpoch(
+    final timestamp = (locationMap['timestamp']!=null)
+      ? DateTime.fromMillisecondsSinceEpoch(
         locationMap['timestamp'].toInt(),
-        isUtc: true);
+        isUtc: true)
+      : null;
 
     if (locationMap['latitude'] == null || locationMap['longitude'] == null) {
       throw ArgumentError(
@@ -76,7 +78,7 @@ class Location {
   Map<String, dynamic> toJson() => {
         'latitude': latitude,
         'longitude': longitude,
-        'timestamp': timestamp.millisecondsSinceEpoch,
+        'timestamp': timestamp?.millisecondsSinceEpoch,
       };
 
   @override
@@ -86,4 +88,17 @@ class Location {
       Longitude: $longitude,
       Timestamp: $timestamp''';
   }
+
+   /// allows automatic deserialization with the json_serializable lib
+  factory Location.fromJson(Map<String, dynamic> json) => fromMap(json);
+
+  /// create a copy of the Location
+  Location copy() {
+    return Location(
+      latitude: latitude,
+      longitude: longitude,
+      timestamp: timestamp
+    );
+  }
+
 }
