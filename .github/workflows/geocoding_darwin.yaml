@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: geocoding_ios
+name: geocoding_darwin
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the main branch
@@ -8,14 +8,14 @@ on:
   push:
     branches: [ main ]
     paths:
-    - 'geocoding_ios/**'
-    - '.github/workflows/geocoding_ios.yaml'
+    - 'geocoding_darwin/**'
+    - '.github/workflows/geocoding_darwin.yaml'
     
   pull_request:
     branches: [ main ]
     paths:
-    - 'geocoding_ios/**'
-    - '.github/workflows/geocoding_ios.yaml'
+    - 'geocoding_darwin/**'
+    - '.github/workflows/geocoding_darwin.yaml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,8 +26,8 @@ jobs:
     runs-on: macos-latest
 
     env:
-      source-directory: ./geocoding_ios
-      example-directory: ./geocoding_ios/example 
+      source-directory: ./geocoding_darwin
+      example-directory: ./geocoding_darwin/example 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

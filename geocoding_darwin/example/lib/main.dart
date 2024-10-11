@@ -13,7 +13,7 @@ class BaseflowPluginExample extends StatelessWidget {
       createMaterialColor(const Color.fromRGBO(48, 49, 60, 1));
 
   /// Constructs the [BaseflowPluginExample] class
-  BaseflowPluginExample({Key? key}) : super(key: key);
+  BaseflowPluginExample({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class BaseflowPluginExample extends StatelessWidget {
 /// A Flutter example demonstrating how the [pluginName] plugin could be used
 class AppHome extends StatefulWidget {
   /// Constructs the [AppHome] class
-  const AppHome({Key? key, required this.title}) : super(key: key);
+  const AppHome({super.key, required this.title});
 
   /// The [title] of the application, which is shown in the application's
   /// title bar.

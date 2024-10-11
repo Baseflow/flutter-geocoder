@@ -3,7 +3,7 @@
 # Run `pod lib lint geocoding.podspec' to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'geocoding_ios'
+  s.name             = 'geocoding_darwin'
   s.version          = '1.0.5'
   s.summary          = 'A Flutter Geocoding plugin which provides easy geocoding and reverse-geocoding features.'
   s.description      = <<-DESC
@@ -20,5 +20,5 @@ A new flutter plugin project.
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
-  s.resource_bundles = {'geocoding_ios_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'geocoding_darwin_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
 end

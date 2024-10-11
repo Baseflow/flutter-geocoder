@@ -6,10 +6,10 @@ import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 const MethodChannel _channel = MethodChannel('flutter.baseflow.com/geocoding');
 
 /// An implementation of [GeocodingPlatform] for iOS.
-class GeocodingIOS extends GeocodingPlatform {
+class GeocodingDarwin extends GeocodingPlatform {
   /// Registers this class as the default instance of [GeocodingPlatform].
   static void registerWith() {
-    GeocodingPlatform.instance = GeocodingIOS();
+    GeocodingPlatform.instance = GeocodingDarwin();
   }
 
   String? _localeIdentifier;

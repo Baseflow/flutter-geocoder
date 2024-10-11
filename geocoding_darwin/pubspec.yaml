@@ -1,7 +1,7 @@
-name: geocoding_ios
+name: geocoding_darwin
 description: A Flutter Geocoding plugin which provides easy geocoding and reverse-geocoding features.
-version: 3.0.1
-repository: https://github.com/baseflow/flutter-geocoding/tree/main/geocoding_ios
+version: 3.1.0
+repository: https://github.com/baseflow/flutter-geocoding/tree/main/geocoding_darwin
 issue_tracker: https://github.com/Baseflow/flutter-geocoding/issues
 
 environment:
@@ -36,4 +36,5 @@ flutter:
     platforms:
       ios:
         pluginClass: GeocodingPlugin
-        dartPluginClass: GeocodingIOS
+        dartPluginClass: GeocodingDarwin
+        sharedDarwinSource: true

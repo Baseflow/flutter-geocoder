@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:geocoding_ios/geocoding_ios.dart';
+import 'package:geocoding_darwin/geocoding_darwin.dart';
 import 'package:geocoding_platform_interface/geocoding_platform_interface.dart';
 
 final mockLocation = Location(
@@ -40,8 +40,8 @@ void main() {
   });
 
   test('registers instance', () {
-    GeocodingIOS.registerWith();
-    expect(GeocodingPlatform.instance, isA<GeocodingIOS>());
+    GeocodingDarwin.registerWith();
+    expect(GeocodingPlatform.instance, isA<GeocodingDarwin>());
   });
 
   group('GeocodingAndroid', () {
@@ -55,7 +55,7 @@ void main() {
         ]);
       });
 
-      final geocoding = GeocodingIOS();
+      final geocoding = GeocodingDarwin();
       final locations = await (geocoding.locationFromAddress(''));
 
       expect(
@@ -80,7 +80,7 @@ void main() {
         ]);
       });
 
-      final geocoding = GeocodingIOS();
+      final geocoding = GeocodingDarwin();
       final locations = await (geocoding.placemarkFromCoordinates(0, 0));
 
       expect(

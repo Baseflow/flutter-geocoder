@@ -100,9 +100,9 @@ updates:
     open-pull-requests-limit: 10
 
   - package-ecosystem: "pub"
-    directory: "/geocoding_ios"
+    directory: "/geocoding_darwin"
     commit-message:
-      prefix: "[geocoding_ios]"
+      prefix: "[geocoding_darwin]"
     schedule:
       interval: "weekly"
     reviewers:
@@ -110,9 +110,9 @@ updates:
     open-pull-requests-limit: 10
     
   - package-ecosystem: "pub"
-    directory: "/geocoding_ios/example"
+    directory: "/geocoding_darwin/example"
     commit-message:
-      prefix: "[geocoding_ios]"
+      prefix: "[geocoding_darwin]"
     schedule:
       interval: "weekly"
     reviewers:

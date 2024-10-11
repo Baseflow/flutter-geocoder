@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:geocoding_ios/geocoding_ios.dart';
+import 'package:geocoding_darwin/geocoding_darwin.dart';
 
 import '../template/globals.dart';
 
 /// Example [Widget] showing the use of the Geocode plugin
 class GeocodeWidget extends StatefulWidget {
   /// Constructs the [GeocodeWidget] class
-  const GeocodeWidget({Key? key}) : super(key: key);
+  const GeocodeWidget({super.key});
 
   @override
   State<GeocodeWidget> createState() => _GeocodeWidgetState();
@@ -17,7 +17,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
   String _output = '';
-  final GeocodingIOS _geocodingIOS = GeocodingIOS();
+  final GeocodingDarwin _geocodingDarwin = GeocodingDarwin();
 
   @override
   void initState() {
@@ -78,7 +78,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
                     final latitude = double.parse(_latitudeController.text);
                     final longitude = double.parse(_longitudeController.text);
 
-                    _geocodingIOS
+                    _geocodingDarwin
                         .placemarkFromCoordinates(latitude, longitude)
                         .then((placemarks) {
                       var output = 'No results found.';
@@ -111,7 +111,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
               child: ElevatedButton(
                   child: const Text('Look up location'),
                   onPressed: () {
-                    _geocodingIOS
+                    _geocodingDarwin
                         .locationFromAddress(_addressController.text)
                         .then((locations) {
                       var output = 'No results found.';
@@ -132,7 +132,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
                 child: ElevatedButton(
                     child: const Text('Is present'),
                     onPressed: () {
-                      _geocodingIOS.isPresent().then((isPresent) {
+                      _geocodingDarwin.isPresent().then((isPresent) {
                         var output = isPresent
                             ? "Geocoder is present"
                             : "Geocoder is not present";
@@ -148,7 +148,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
                 child: ElevatedButton(
                     child: const Text('Set locale en_US'),
                     onPressed: () {
-                      _geocodingIOS.setLocaleIdentifier("en_US").then((_) {
+                      _geocodingDarwin.setLocaleIdentifier("en_US").then((_) {
                         setState(() {});
                       });
                     })),
@@ -159,7 +159,7 @@ class _GeocodeWidgetState extends State<GeocodeWidget> {
                 child: ElevatedButton(
                     child: const Text('Set locale nl_NL'),
                     onPressed: () {
-                      _geocodingIOS.setLocaleIdentifier("nl_NL").then((_) {
+                      _geocodingDarwin.setLocaleIdentifier("nl_NL").then((_) {
                         setState(() {});
                       });
                     })),

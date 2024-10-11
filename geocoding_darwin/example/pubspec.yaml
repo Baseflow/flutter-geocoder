@@ -1,4 +1,4 @@
-name: geocoding_ios_example
+name: geocoding_darwin_example
 description: Demonstrates how to use the geocoding plugin.
 
 # The following line prevents the package from being accidentally published to
@@ -13,9 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  geocoding_ios:
+  geocoding_darwin:
     # When depending on this package from a real application you should use:
-    #   geocoding_ios: ^x.y.z
+    #   geocoding_darwin: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version. 
