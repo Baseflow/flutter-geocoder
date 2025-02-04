@@ -1,3 +1,7 @@
+## 3.1.0
+
+* Adds SPM support
+
 ## 3.0.1
 
 * Adds privacy manifest.

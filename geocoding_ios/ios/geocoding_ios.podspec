@@ -13,12 +13,12 @@ A new flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Baseflow' => 'hello@baseflow.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.public_header_files = 'Classes/**/*.h'
+  s.source_files = 'geocoding_ios/Sources/**/*'
+  s.public_header_files = 'geocoding_ios/Sources/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'VALID_ARCHS[sdk=iphonesimulator*]' => 'x86_64' }
-  s.resource_bundles = {'geocoding_ios_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  s.resource_bundles = {'geocoding_ios_privacy' => ['geocoding_ios/Sources/PrivacyInfo.xcprivacy']}
 end

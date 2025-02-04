@@ -7,7 +7,7 @@
 
 #import <AddressBook/AddressBook.h>
 #import <Contacts/Contacts.h>
-#import "CLPlacemarkExtensions.h"
+#import "../include/geocoding_ios/CLPlacemarkExtensions.h"
 
 @implementation CLPlacemark (CLPlacemarkExtensions)
 

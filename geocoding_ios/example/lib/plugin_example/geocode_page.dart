@@ -6,7 +6,7 @@ import '../template/globals.dart';
 /// Example [Widget] showing the use of the Geocode plugin
 class GeocodeWidget extends StatefulWidget {
   /// Constructs the [GeocodeWidget] class
-  const GeocodeWidget({Key? key}) : super(key: key);
+  const GeocodeWidget({super.key});
 
   @override
   State<GeocodeWidget> createState() => _GeocodeWidgetState();

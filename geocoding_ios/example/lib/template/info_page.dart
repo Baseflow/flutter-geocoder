@@ -6,7 +6,7 @@ import 'globals.dart';
 /// [StatelessWidget] displaying information about Baseflow
 class InfoPage extends StatelessWidget {
   /// Constructs the [InfoPage] class
-  const InfoPage({Key? key}) : super(key: key);
+  const InfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {

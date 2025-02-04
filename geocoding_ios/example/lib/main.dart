@@ -13,7 +13,7 @@ class BaseflowPluginExample extends StatelessWidget {
       createMaterialColor(const Color.fromRGBO(48, 49, 60, 1));
 
   /// Constructs the [BaseflowPluginExample] class
-  BaseflowPluginExample({Key? key}) : super(key: key);
+  BaseflowPluginExample({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class BaseflowPluginExample extends StatelessWidget {
   static MaterialColor createMaterialColor(Color color) {
     final strengths = <double>[.05];
     final swatch = <int, Color>{};
-    final r = color.red, g = color.green, b = color.blue;
+    final r = color.r, g = color.g, b = color.b;
 
     for (var i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
@@ -76,12 +76,13 @@ class BaseflowPluginExample extends StatelessWidget {
     for (var strength in strengths) {
       final ds = 0.5 - strength;
       swatch[(strength * 1000).round()] = Color.fromRGBO(
-        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+        (r + ((ds < 0 ? r : (255 - r)) * ds)).round(),
+        (g + ((ds < 0 ? g : (255 - g)) * ds)).round(),
+        (b + ((ds < 0 ? b : (255 - b)) * ds)).round(),
         1,
       );
     }
+    // ignore: deprecated_member_use
     return MaterialColor(color.value, swatch);
   }
 }
@@ -89,7 +90,7 @@ class BaseflowPluginExample extends StatelessWidget {
 /// A Flutter example demonstrating how the [pluginName] plugin could be used
 class AppHome extends StatefulWidget {
   /// Constructs the [AppHome] class
-  const AppHome({Key? key, required this.title}) : super(key: key);
+  const AppHome({super.key, required this.title});
 
   /// The [title] of the application, which is shown in the application's
   /// title bar.
